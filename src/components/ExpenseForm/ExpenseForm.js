@@ -1,17 +1,45 @@
-const ExpenseForm = () => {
+import { useState } from "react";
+
+const ExpenseForm = ({ saveExpense }) => {
+  const [title, setTitle] = useState("Set Title Here");
+  const [price, setPrice] = useState("$0.00");
+  const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
+
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    const expense = {
+      title,
+      price,
+      date,
+    };
+    saveExpense(expense);
+  };
+
   return (
-    <form>
+    <form onSubmit={onSubmitHandler}>
       <label>
         Title
-        <input type="text" />
+        <input
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
       </label>
       <label>
         Price
-        <input type="text" />
+        <input
+          type="text"
+          onChange={(e) => setPrice(e.target.value)}
+          value={price}
+        />
       </label>
       <label>
         Date
-        <input type="text" />
+        <input
+          type="date"
+          onChange={(e) => setDate(e.target.value)}
+          value={date}
+        />
       </label>
       <button>Cancel</button>
       <button>Add Expense</button>
