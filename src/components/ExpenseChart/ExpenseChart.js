@@ -18,10 +18,22 @@ const ExpenseChart = () => {
     setExpense(filteredExpenses);
   };
 
+  const saveEditedExpense = (updatedExpense, id) => {
+    console.log("save edit");
+    const updatedExpenses = expenses.map((expense) =>
+      expense.id === id ? { ...updatedExpense, id: expense.id } : expense
+    );
+    setExpense(updatedExpenses);
+  };
+
   return (
     <div>
       <ExpenseForm saveExpense={saveExpense} />
-      <ExpenseList expenses={expenses} removeExpense={removeExpense} />
+      <ExpenseList
+        expenses={expenses}
+        removeExpense={removeExpense}
+        saveEditedExpense={saveEditedExpense}
+      />
     </div>
   );
 };
