@@ -13,6 +13,9 @@ const ExpenseForm = ({ saveExpense }) => {
       date,
     };
     saveExpense(expense);
+    setTitle("");
+    setPrice("$0.00");
+    setDate(new Date().toISOString().slice(0, 10));
   };
 
   return (
